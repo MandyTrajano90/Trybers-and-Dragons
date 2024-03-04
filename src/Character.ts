@@ -3,6 +3,7 @@ import Archetype, { Mage } from './Archetypes';
 import Race, { Elf } from './Races';
 import Energy from './Energy';
 import getRandomInt from './utils';
+import SimpleFighter from './Fighter/SimpleFighter';
 
 class Character implements Fighter {
   private _lifePoints: number;
@@ -75,7 +76,7 @@ class Character implements Fighter {
     return this._lifePoints;
   }
 
-  attack(enemy: Fighter): void {
+  attack(enemy: Fighter | SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
@@ -91,7 +92,7 @@ class Character implements Fighter {
     this._lifePoints = this._maxLifePoints;
   }
 
-  special(enemy: Fighter): void {
+  special(enemy: Fighter | SimpleFighter): void {
     const superPower = 15;
     enemy.receiveDamage(superPower);
     console.log(`${this.name} uses his super power!`);
